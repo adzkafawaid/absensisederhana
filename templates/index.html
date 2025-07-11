@@ -18,6 +18,22 @@
         .btn { padding: 10px 20px; border: none; border-radius: 5px; background: #007bff; color: #fff; font-size: 1em; cursor: pointer; margin: 10px 5px; }
         .btn:active { background: #0056b3; }
         #camera-error { color: red; margin-top: 10px; }
+        .download-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 28px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 2px 8px #0001;
+            transition: background 0.2s;
+        }
+        .download-btn:hover {
+            background: #0056b3;
+        }
     </style>
     <script src="/static/app.js" defer></script>
 </head>
@@ -44,6 +60,7 @@
             </thead>
             <tbody></tbody>
         </table>
+        <a href="/download" class="download-btn">Download Absensi (CSV)</a>
     </div>
 </body>
 </html>

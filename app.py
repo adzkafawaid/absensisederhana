@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 from datetime import datetime
+from flask import send_file
 
 import os
 
@@ -60,6 +61,10 @@ def data_absen():
     df_absen = pd.read_csv(ABSEN_FILE)
     data = df_absen.to_dict(orient="records")
     return jsonify(data)
+@app.route('/download')
+def download():
+    return send_file(ABSEN_FILE, as_attachment=True)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

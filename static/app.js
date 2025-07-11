@@ -56,10 +56,10 @@ function onScanSuccess(decodedText, decodedResult) {
     .then(res => res.json())
     .then(data => {
         if(data.status === 'success') {
-            document.getElementById('result').innerHTML = `✅ ${data.nama} (${data.kelas}) absen pada ${data.waktu}`;
+            document.getElementById('result').innerHTML = `✅ ${data.nama} (${data.nim}) - ${data.jabatan} absen pada ${data.waktu}`;
             loadAbsen();
         } else if(data.status === 'sudah_absen') {
-            document.getElementById('result').innerHTML = `⚠️ ${data.nama} (${data.kelas}) sudah absen hari ini!`;
+            document.getElementById('result').innerHTML = `⚠️ ${data.nama} (${data.nim}) - ${data.jabatan} sudah absen hari ini!`;
         } else {
             document.getElementById('result').innerHTML = '❌ Data tidak ditemukan!';
         }
@@ -79,8 +79,10 @@ function loadAbsen() {
             const tbody = document.querySelector('#absenTable tbody');
             tbody.innerHTML = '';
             data.forEach(row => {
+                // Pastikan NIM tampil, jika tidak ada isi string kosong
+                const nim = row.NIM !== undefined ? row.NIM : '';
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${row.ID}</td><td>${row.Nama}</td><td>${row.Kelas}</td><td>${row.Waktu}</td>`;
+                tr.innerHTML = `<td>${row.ID}</td><td>${row.Nama}</td><td>${nim}</td><td>${row.Jabatan || ''}</td><td>${row.Waktu || ''}</td>`;
                 tbody.appendChild(tr);
             });
         });
